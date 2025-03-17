@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  HomePaciente.fxml
+  Pantalla de inicio (dashboard) para el rol Paciente con menú lateral reutilizable.
+  Imagen de ejemplo:
+    - Menú a la izquierda: Menú principal, Emergencias, Historial, Perfil, Ajustes
+    - Contenido principal: “¡Hola, (paciente)!”, “¡Todo en orden!”, gráfico de ritmo cardíaco, etc.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="583.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectoinformatica1.elderlive.controller.DoctorSeleccionUmbralesController">
+
+    <!-- Sección Izquierda: Menú lateral (reutilizable para otros roles) -->
+    <left>
+        <VBox fx:id="sideMenuVBox" spacing="15" style="-fx-background-color: #EFEFEF; -fx-padding: 20;">
+            <!-- Imagen y texto del logo -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="logoImageView" fitWidth="50.0" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo_elderlive.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="ElderLive" />
+            </HBox>
+
+            <!-- Imagen pacienteIcon -->
+            <ImageView fx:id="pacienteIcon" fitWidth="120.0" preserveRatio="true" translateX="35.0">
+                <image>
+                    <Image url="@images/doctorIcon.png" />
+                </image>
+            </ImageView>
+
+            <!-- Saludo -->
+            <Label fx:id="lblSaludoPaciente" prefHeight="32.0" prefWidth="180.0" style="-fx-font-size: 22px; -fx-font-weight: bold;" text=" ¡Hola, (doctor)!" textAlignment="CENTER" />
+
+            <!-- Menú principal (imagen + botón) -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="imgMenu" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@images/menu_principal.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnHomeDoctor" onAction="#handleBtnHomeDoctor" prefWidth="150" text="Menú principal" />
+            </HBox>
+
+            <!-- Emergencias (imagen + botón) -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="imgEmergencias" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@images/grafico-de-barras.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnUmbrales" prefWidth="150" text="Umbrales" />
+            </HBox>
+
+            <!-- Ajustes (imagen + botón) -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="imgAjustes" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@images/salida.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnLogOut" onAction="#handleBtnLogOut" prefWidth="150" text="Cerrar sesión" />
+            </HBox>
+
+        </VBox>
+    </left>
+
+    <!-- Sección Central: Contenido principal de la vista del Paciente -->
+    <center>
+        <AnchorPane fx:id="mainContentAnchor" prefHeight="574.0" prefWidth="835.0">
+            <children>
+
+                <!-- Ritmo cardíaco -->
+                <VBox layoutX="156.0" layoutY="24.0" spacing="10" />
+            <Line endX="-5.800076484680176" endY="501.699951171875" layoutX="7.0" layoutY="84.0" startX="-5.800076484680176" startY="-95.4000244140625" />
+                  <Label layoutX="42.0" layoutY="42.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Seleccione un paciente para configurar sus umbrales y medicación" />
+            <ScrollPane layoutX="42.0" layoutY="87.0" prefHeight="466.0" prefWidth="766.0">
+               <content>
+                  <GridPane prefHeight="460.0" prefWidth="760.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                          <Label fx:id="actividadLabel" prefHeight="39.0" prefWidth="126.0" style="-fx-font-weight: bold;" text="Zacarías Satrutegui">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button mnemonicParsing="false" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel1" prefHeight="39.0" prefWidth="126.0" style="-fx-font-weight: bold;" text="Zacarías Satrutegui">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnZacarias" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel11" prefHeight="39.0" prefWidth="103.0" style="-fx-font-weight: bold;" text="Fina Palomares">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnFina" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="164.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel111" prefHeight="39.0" prefWidth="98.0" style="-fx-font-weight: bold;" text="Enrique Pastor">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnEnrique" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel12" prefHeight="39.0" prefWidth="122.0" style="-fx-font-weight: bold;" text="Araceli Madariaga" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnAraceli" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel13" prefHeight="39.0" prefWidth="99.0" style="-fx-font-weight: bold;" text="Fermín Trujillo">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnFermin" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel14" prefHeight="39.0" prefWidth="95.0" style="-fx-font-weight: bold;" text="Antonio Recio">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnAntonio" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel15" prefHeight="39.0" prefWidth="126.0" style="-fx-font-weight: bold;" text="Germán Palomares">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnGerman" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel16" prefHeight="39.0" prefWidth="106.0" style="-fx-font-weight: bold;" text="Vicente Maroto">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnVicente" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/persona.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="154.0" prefWidth="187.0">
+                                 <children>
+                                    <Label fx:id="actividadLabel17" prefHeight="39.0" prefWidth="91.0" style="-fx-font-weight: bold;" text="Berta Escobar">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnBerta" mnemonicParsing="false" onAction="#handleBtnVerPanel" text="Ver panel" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+
+            </children>
+        </AnchorPane>
+    </center>
+
+</BorderPane>

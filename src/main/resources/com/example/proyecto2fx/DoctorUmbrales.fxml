@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  HomePaciente.fxml
+  Pantalla de inicio (dashboard) para el rol Paciente con menú lateral reutilizable.
+  Imagen de ejemplo:
+    - Menú a la izquierda: Menú principal, Emergencias, Historial, Perfil, Ajustes
+    - Contenido principal: “¡Hola, (paciente)!”, “¡Todo en orden!”, gráfico de ritmo cardíaco, etc.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<BorderPane prefHeight="583.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectoinformatica1.elderlive.controller.DoctorUmbralesController">
+
+    <!-- Sección Izquierda: Menú lateral (reutilizable para otros roles) -->
+    <left>
+        <VBox fx:id="sideMenuVBox" spacing="15" style="-fx-background-color: #EFEFEF; -fx-padding: 20;">
+            <!-- Imagen y texto del logo -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="logoImageView" fitWidth="50.0" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo_elderlive.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="ElderLive" />
+            </HBox>
+
+            <!-- Imagen pacienteIcon -->
+            <ImageView fx:id="pacienteIcon" fitWidth="120.0" preserveRatio="true" translateX="35.0">
+                <image>
+                    <Image url="@images/doctorIcon.png" />
+                </image>
+            </ImageView>
+
+            <!-- Saludo -->
+            <Label fx:id="lblSaludoPaciente" prefHeight="32.0" prefWidth="180.0" style="-fx-font-size: 22px; -fx-font-weight: bold;" text=" ¡Hola, (doctor)!" textAlignment="CENTER" />
+
+            <!-- Menú principal (imagen + botón) -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="imgMenu" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@images/menu_principal.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnHomeDoctor" onAction="#handleBtnHomeDoctor" prefWidth="150" text="Menú principal" />
+            </HBox>
+
+            <!-- Emergencias (imagen + botón) -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="imgEmergencias" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@images/grafico-de-barras.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnUmbrales" onAction="#handleBtnUmbrales" prefWidth="150" text="Umbrales" />
+            </HBox>
+
+            <!-- Ajustes (imagen + botón) -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fx:id="imgAjustes" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@images/salida.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnLogOut" onAction="#handleBtnLogOut" prefWidth="150" text="Cerrar sesión" />
+            </HBox>
+
+        </VBox>
+    </left>
+
+    <!-- Sección Central: Contenido principal de la vista del Paciente -->
+    <center>
+        <AnchorPane fx:id="mainContentAnchor" prefHeight="574.0" prefWidth="835.0">
+            <children>
+
+                <!-- Ritmo cardíaco -->
+                <VBox layoutX="156.0" layoutY="24.0" spacing="10" />
+            <Line endX="-5.800076484680176" endY="501.699951171875" layoutX="7.0" layoutY="84.0" startX="-5.800076484680176" startY="-95.4000244140625" />
+            <Button fx:id="btnVolver" layoutX="65.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleBtnVolver" prefHeight="26.0" prefWidth="154.0" text="&lt; Volver a selección" />
+            <Label fx:id="labelNombrePaciente" layoutX="306.0" layoutY="35.0" prefHeight="35.0" prefWidth="466.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Configurar umbrales de " textAlignment="CENTER" />
+            <VBox layoutX="52.0" layoutY="140.0" prefHeight="326.0" prefWidth="334.0">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="109.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Umbrales" textAlignment="CENTER" />
+                  <Label prefHeight="26.0" prefWidth="139.0" text="Ritmo cardiaco mínimo&#10; " />
+                  <Slider fx:id="sliderBPMMin" majorTickUnit="15.0" max="80.0" min="40.0" prefHeight="38.0" prefWidth="248.0" showTickLabels="true" showTickMarks="true" />
+                  <Label layoutX="10.0" layoutY="45.0" prefHeight="26.0" prefWidth="139.0" text="Ritmo cardiaco máximo&#10; " />
+                  <Slider fx:id="sliderBPMMax" layoutX="10.0" layoutY="72.0" majorTickUnit="15.0" max="160.0" min="100.0" prefHeight="38.0" prefWidth="248.0" showTickLabels="true" showTickMarks="true" />
+                  <Label layoutX="10.0" layoutY="45.0" prefHeight="26.0" prefWidth="127.0" text="Pasos diarios&#10; " />
+                  <Slider fx:id="sliderPasosDia" blockIncrement="100.0" majorTickUnit="500.0" max="10000.0" minorTickCount="1" prefHeight="38.0" prefWidth="247.0" showTickLabels="true" showTickMarks="true" />
+                  <Label layoutX="10.0" layoutY="110.0" prefHeight="26.0" prefWidth="127.0" text="Minutos de ejecicio &#10; " />
+                  <Slider fx:id="sliderMinsEj" layoutX="10.0" layoutY="136.0" majorTickUnit="15.0" max="120.0" prefHeight="38.0" prefWidth="247.0" showTickLabels="true" showTickMarks="true" />
+                  <Label layoutX="10.0" layoutY="175.0" prefHeight="26.0" prefWidth="127.0" text="Minutos de pie&#10; &#10; " />
+                  <Slider fx:id="sliderMinsPie" layoutX="10.0" layoutY="201.0" majorTickUnit="15.0" max="120.0" prefHeight="38.0" prefWidth="247.0" showTickLabels="true" showTickMarks="true" />
+               </children>
+            </VBox>
+            <VBox layoutX="469.0" layoutY="140.0" prefHeight="304.0" prefWidth="307.0">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="109.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Recordatorios" textAlignment="CENTER" />
+                  <HBox prefHeight="86.0" prefWidth="307.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="174.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="109.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Tensión" textAlignment="CENTER" />
+                              <Label prefHeight="26.0" prefWidth="119.0" text="10:00 " />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="86.0" prefWidth="157.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Editar" />
+                              <Label prefHeight="0.0" prefWidth="119.0" text=" " />
+                              <Button mnemonicParsing="false" text="Eliminar" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="45.0" prefHeight="86.0" prefWidth="307.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="174.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="109.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Aquilea" textAlignment="CENTER" />
+                              <Label prefHeight="26.0" prefWidth="119.0" text="22:00 " />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="86.0" prefWidth="157.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Editar" />
+                              <Label prefHeight="0.0" prefWidth="119.0" text=" " />
+                              <Button mnemonicParsing="false" text="Eliminar" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="162.0" text="Añadir recordatorio" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="btnGuardar" layoutX="338.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleBtnGuardar" prefHeight="26.0" prefWidth="158.0" text="Guardar cambios" />
+
+            </children>
+        </AnchorPane>
+    </center>
+
+</BorderPane>

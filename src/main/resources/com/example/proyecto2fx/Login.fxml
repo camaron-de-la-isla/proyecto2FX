@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Login.fxml -->
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Path?>
+<AnchorPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectoinformatica1.elderlive.controller.LoginController">
+    <!-- Estilo con fondo en gradiente azul -->
+    <stylesheets>
+        <URL value="@../css/style.css" />
+    </stylesheets>
+
+    <children>
+        <!-- Contenedor principal centrado -->
+        <VBox alignment="CENTER" layoutX="0" layoutY="0" prefHeight="400" prefWidth="600" spacing="20">
+
+            <!-- Logo ElderLive -->
+            <ImageView fx:id="logoImageView" fitWidth="120" preserveRatio="true" />
+
+            <!-- Campo de texto para Email con un tamaño más pequeño -->
+            <TextField fx:id="emailTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="335.0" promptText="Email" /> <!-- Ajustado el tamaño -->
+
+            <!-- Campo de contraseña con un tamaño más pequeño -->
+            <PasswordField fx:id="passwordField" maxWidth="-Infinity" prefWidth="500" promptText="Contraseña" /> <!-- Ajustado el tamaño -->
+
+            <!-- Sección Recordarme, alineada a la izquierda -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <CheckBox fx:id="rememberMeCheckBox" maxWidth="-Infinity" prefWidth="401.0" text="Recordarme" translateX="175.0" />
+            </HBox>
+
+            <!-- Botón de inicio de sesión -->
+            <Button fx:id="loginButton" prefWidth="250" text="Iniciar sesión" />
+
+            <!-- Link de olvido de contraseña -->
+            <Hyperlink fx:id="forgotPasswordLink" text="¿Olvidó su contraseña?" />
+        </VBox>
+    </children>
+</AnchorPane>
